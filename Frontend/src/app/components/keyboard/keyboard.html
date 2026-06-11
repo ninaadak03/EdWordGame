@@ -1,0 +1,47 @@
+<div class="keyboard">
+  <div class="keyboard-row">
+    @for (letter of row1; track letter) {
+      <button
+        class="key"
+        [class.absent]="keyStatuses[letter] === 0"
+        [class.present]="keyStatuses[letter] === 1"
+        [class.correct]="keyStatuses[letter] === 2"
+        (click)="emitKey(letter)"
+      >
+        {{ letter }}
+      </button>
+    }
+  </div>
+
+  <div class="keyboard-row">
+    @for (letter of row2; track letter) {
+      <button
+        class="key"
+        [class.absent]="keyStatuses[letter] === 0"
+        [class.present]="keyStatuses[letter] === 1"
+        [class.correct]="keyStatuses[letter] === 2"
+        (click)="emitKey(letter)"
+      >
+        {{ letter }}
+      </button>
+    }
+  </div>
+
+  <div class="keyboard-row">
+    <button class="key wide" (click)="emitKey('Enter')">ENTER</button>
+
+    @for (letter of row3; track letter) {
+      <button
+        class="key"
+        [class.absent]="keyStatuses[letter] === 0"
+        [class.present]="keyStatuses[letter] === 1"
+        [class.correct]="keyStatuses[letter] === 2"
+        (click)="emitKey(letter)"
+      >
+        {{ letter }}
+      </button>
+    }
+
+    <button class="key wide" (click)="emitKey('Backspace')">⌫</button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="board">
+  @for (row of board; track $index) {
+    <div class="row" [class.shake]="shakeRow === $index">
+      @for (tile of row; track $index) {
+        <div
+          class="tile"
+          [class.absent]="tile.status === 0"
+          [class.present]="tile.status === 1"
+          [class.correct]="tile.status === 2"
+        >
+          {{ tile.letter }}
+        </div>
+      }
+    </div>
+  }
+</div>
