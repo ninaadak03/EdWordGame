@@ -1,0 +1,110 @@
+.header {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 20px;
+
+  /* border-bottom: 1px solid #a6a5a5; */
+
+  box-sizing: border-box;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  height: clamp(24px, 4vw, 32px);
+  width: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-button {
+  border: none;
+  background: transparent;
+
+  color: inherit;
+
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  z-index: 3000;
+}
+
+.instructions-modal {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+
+  background: white;
+  color: black;
+
+  padding: 24px;
+
+  border-radius: 12px;
+
+  max-width: 400px;
+  width: 90%;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.instructions-modal h2 {
+  margin-top: 0;
+}
+
+.close-button {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 1.5rem;
+
+  cursor: pointer;
+}
+
+.dark-modal {
+  background: #949494;
+
+  color: rgb(0, 0, 0);
+
+  border: 1px solid #555;
+}
+
+.dark-modal .close-button {
+  color: rgb(41, 41, 41);
+}
+
+.dark-modal .modal-backdrop {
+  background: rgba(70, 69, 69, 0.75);
+}

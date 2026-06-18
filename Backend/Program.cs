@@ -12,11 +12,11 @@ builder.Services.AddScoped<IWordService, WordService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("Angular",
+    options.AddPolicy("AllowAll",
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200")
+                .AllowAnyOrigin()
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
@@ -32,7 +32,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("Angular");
+app.UseCors("AllowAll");
 
 app.MapControllers();
 

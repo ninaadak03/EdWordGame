@@ -22,4 +22,8 @@ export class GameService {
   getAnswer(): Observable<{ answer: string }> {
     return this.http.get<{ answer: string }>(`${this.apiUrl}/answer`);
   }
+
+  getInfo(): Observable<{ puzzleNumber: number }> {
+    return this.http.get<{ puzzleNumber: number }>(`${this.apiUrl}/info`);
+  }
 }

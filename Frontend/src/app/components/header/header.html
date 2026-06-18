@@ -1,0 +1,35 @@
+<header class="header">
+  <a routerLink="/" class="title">
+    <img src="images/edword-logo.png" alt="EdWord Logo" class="logo" />
+    <span>#{{ puzzleNumber }}</span>
+  </a>
+
+  <div class="actions">
+    <button class="icon-button" title="How to Play" (click)="openInstructions()">❓</button>
+    <button
+      class="icon-button"
+      [title]="isDarkMode ? 'Light Mode' : 'Dark Mode'"
+      (click)="toggleDarkMode($event)"
+    >
+      {{ isDarkMode ? '☀️' : '🌝' }}
+    </button>
+  </div>
+</header>
+
+@if (showInstructions) {
+  <div class="modal-backdrop">
+    <div class="instructions-modal" [class.dark-modal]="isDarkMode">
+      <button class="close-button" (click)="closeInstructions()">×</button>
+
+      <h2>How to Play</h2>
+
+      <p>Guess the 5-letter word in 6 tries.</p>
+
+      <p>🟩 Correct letter in the correct position.</p>
+
+      <p>🟨 Correct letter in the wrong position.</p>
+
+      <p>⬛ Letter is not in the word.</p>
+    </div>
+  </div>
+}

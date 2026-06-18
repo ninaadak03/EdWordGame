@@ -1,5 +1,43 @@
 <div class="container">
-  <h1>Wordle Clone</h1>
+  <img src="images/edword-logo.png" alt="EdWord Logo" class="logo" />
 
-  <button routerLink="/game">Play</button>
+  @if (!hasSavedGame) {
+    <h1>{{ greeting }}</h1>
+
+    <button routerLink="/game">Start Puzzle</button>
+    <div class="puzzle-info">
+      <p>Puzzle #{{ puzzleNumber }}</p>
+      <p>{{ todayDate }}</p>
+    </div>
+  }
+
+  @if (hasSavedGame && !isCompletedGame) {
+    <h1>Welcome Back</h1>
+
+    <button routerLink="/game">Resume Puzzle</button>
+    <div class="puzzle-info">
+      <p>Puzzle #{{ puzzleNumber }}</p>
+      <p>{{ todayDate }}</p>
+    </div>
+  }
+
+  @if (hasSavedGame && isCompletedGame) {
+    @if (isWin) {
+      <h1>Great Work Today!</h1>
+
+      <button routerLink="/game">Admire Your Puzzle</button>
+      <div class="puzzle-info">
+        <p>Puzzle #{{ puzzleNumber }}</p>
+        <p>{{ todayDate }}</p>
+      </div>
+    } @else {
+      <h1>Better Luck Next Time!</h1>
+
+      <button routerLink="/game">View Your Puzzle</button>
+      <div class="puzzle-info">
+        <p>Puzzle #{{ puzzleNumber }}</p>
+        <p>{{ todayDate }}</p>
+      </div>
+    }
+  }
 </div>

@@ -4,6 +4,7 @@
       @for (tile of row; track $index) {
         <div
           class="tile"
+          [class.flip]="tile.isFlipping"
           [class.absent]="tile.status === 0"
           [class.present]="tile.status === 1"
           [class.correct]="tile.status === 2"

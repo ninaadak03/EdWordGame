@@ -9,13 +9,15 @@
 .row {
   display: flex;
   gap: 6px;
+  perspective: 1000px;
 }
 
 .tile {
-  width: clamp(45px, 12vw, 60px);
-  height: clamp(45px, 12vw, 60px);
+  width: clamp(42px, 10vw, 52px);
+  height: clamp(42px, 10vw, 52px);
 
-  border: 2px solid #d3d6da;
+  border: 1.8px solid #000000;
+  border-radius: 10%;
 
   display: flex;
   justify-content: center;
@@ -23,20 +25,25 @@
 
   font-size: clamp(1.2rem, 4vw, 2rem);
   font-weight: bold;
+
+  transform-style: preserve-3d;
 }
 
 .absent {
-  background-color: #787c7e;
+  background-color: #5e5e5e;
+  border-color: #5e5e5e;
   color: white;
 }
 
 .present {
-  background-color: #c9b458;
+  background-color: #f8b100;
+  border-color: #f8b100;
   color: white;
 }
 
 .correct {
-  background-color: #6aaa64;
+  background-color: #19d200;
+  border-color: #19d200;
   color: white;
 }
 
@@ -78,4 +85,26 @@
   100% {
     transform: translateX(0);
   }
+}
+
+.flip {
+  animation: flip 0.35s linear;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  50% {
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+body.dark-mode .tile {
+  border-color: white;
 }
