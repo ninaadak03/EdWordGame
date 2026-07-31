@@ -16,7 +16,10 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .AllowAnyOrigin()
+                .WithOrigins(
+                "http://localhost:4200",
+                "https://dailyedword.netlify.app"
+                )
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
@@ -32,7 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+app.UseCors("Frontend");
 
 app.MapControllers();
 
