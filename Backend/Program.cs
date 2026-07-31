@@ -12,7 +12,7 @@ builder.Services.AddScoped<IWordService, WordService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
+    options.AddPolicy("Frontend",
         policy =>
         {
             policy
