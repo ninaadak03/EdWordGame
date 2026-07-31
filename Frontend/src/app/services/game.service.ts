@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 import { GuessResponse } from '../models/guess-response.model';
 
@@ -11,7 +12,7 @@ import { GuessResponse } from '../models/guess-response.model';
 export class GameService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:5084/api/game';
+  private apiUrl = environment.apiUrl;
 
   submitGuess(guess: string): Observable<GuessResponse> {
     return this.http.post<GuessResponse>(`${this.apiUrl}/guess`, {

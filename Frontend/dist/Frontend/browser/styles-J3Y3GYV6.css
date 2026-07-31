@@ -1,0 +1,1 @@
+*{box-sizing:border-box}body{margin:0;overflow-x:hidden;background-color:#dadada;color:#000;transition:background-color .2s ease,color .2s ease}body.dark-mode{background-color:#121213;color:#fff}body.dark-mode .tile:not(.absent):not(.present):not(.correct){border-color:#fff}body.dark-mode .share-button{background-color:#e0e0e0;color:#000}
