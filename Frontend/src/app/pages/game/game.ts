@@ -81,14 +81,45 @@ export class GameComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+  private resetGame() {
+    localStorage.removeItem('wordle-game');
+
+    this.board = Array.from({ length: 6 }, () =>
+      Array.from(
+        { length: 5 },
+        (): Tile => ({
+          letter: '',
+          status: null,
+          isFlipping: false,
+        }),
+      ),
+    );
+
+    this.keyStatuses = {};
+
+    this.currentRow = 0;
+    this.currentCol = 0;
+
+    this.isGameOver = false;
+    this.isWin = false;
+    this.showGameOverModal = false;
+
+    this.answer = '';
+    this.toastMessage = '';
+    this.showToast = false;
+    this.shakeRow = -1;
+    this.isAnimating = false;
+  }
+
   ngOnInit() {
     this.loadGame();
 
-    if (this.puzzleNumber > 0) {
-      return;
-    }
-
     this.gameService.getInfo().subscribe((info) => {
+      // New puzzle day
+      if (this.puzzleNumber > 0 && this.puzzleNumber !== info.puzzleNumber) {
+        this.resetGame();
+      }
+
       this.puzzleNumber = info.puzzleNumber;
 
       this.saveGame();

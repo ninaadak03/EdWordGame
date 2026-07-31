@@ -20,7 +20,7 @@ public class WordService : IWordService
 
     public string GetTodaysWord()
     {
-        var startDate = new DateTime(2026, 1, 1);
+        var startDate = new DateTime(2026, 8, 1);
 
         var daysSinceStart = Math.Max(0, (DateTime.Now.Date - startDate).Days);
 
@@ -38,7 +38,7 @@ public class WordService : IWordService
 
     public int GetPuzzleNumber()
     {
-        var startDate = new DateTime(2026, 1, 1);
+        var startDate = new DateTime(2026, 8, 1);
 
         return Math.Max(0,(DateTime.Now.Date - startDate).Days);
     }
