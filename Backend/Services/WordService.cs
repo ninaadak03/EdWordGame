@@ -21,25 +21,28 @@ public class WordService : IWordService
     public string GetTodaysWord()
     {
         var startDate = new DateTime(2026, 8, 1);
-
-        var daysSinceStart = Math.Max(0, (DateTime.Now.Date - startDate).Days);
-
+        var today = GetTodayInIST();
+        var daysSinceStart = Math.Max(0, (today - startDate).Days);
         var index = daysSinceStart % _answers.Count;
-
         return _answers[index];
     }
 
     public bool IsValidGuess(string guess)
     {
         guess = guess.ToUpper();
-
         return _answers.Contains(guess) || _allowedGuesses.Contains(guess);
     }
 
     public int GetPuzzleNumber()
     {
         var startDate = new DateTime(2026, 8, 1);
+        var today = GetTodayInIST();
+        return Math.Max(0, (today - startDate).Days);
+    }
 
-        return Math.Max(0,(DateTime.Now.Date - startDate).Days);
+    private static DateTime GetTodayInIST()
+    {
+        var istTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Kolkata");
+        return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, istTimeZone).Date;
     }
 }

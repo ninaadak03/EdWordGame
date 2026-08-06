@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   ) {
     console.log('Home constructor');
   }
+
   greeting = '';
 
   hasSavedGame = false;
@@ -43,20 +44,25 @@ export class HomeComponent implements OnInit {
 
     this.gameService.getInfo().subscribe((result) => {
       this.puzzleNumber = result.puzzleNumber;
+
+      const savedGame = localStorage.getItem('wordle-game');
+
+      if (!savedGame) {
+        this.cdr.detectChanges();
+        return;
+      }
+
+      const gameState: SavedGame = JSON.parse(savedGame);
+
+      if (gameState.puzzleNumber === result.puzzleNumber) {
+        this.hasSavedGame = gameState.currentRow > 0 || gameState.isGameOver;
+        this.isCompletedGame = gameState.isGameOver;
+        this.isWin = gameState.isWin;
+      } else {
+        localStorage.removeItem('wordle-game');
+      }
+
       this.cdr.detectChanges();
     });
-
-    const savedGame = localStorage.getItem('wordle-game');
-
-    if (!savedGame) {
-      return;
-    }
-
-    const gameState: SavedGame = JSON.parse(savedGame);
-
-    this.hasSavedGame = gameState.currentRow > 0 || gameState.isGameOver;
-
-    this.isCompletedGame = gameState.isGameOver;
-    this.isWin = gameState.isWin;
   }
 }
