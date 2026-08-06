@@ -112,26 +112,23 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.gameService.getInfo().subscribe((info) => {
-    this.puzzleNumber = info.puzzleNumber;
+    this.gameService.getInfo().subscribe((info) => {
+      this.puzzleNumber = info.puzzleNumber;
 
-    const savedGame = localStorage.getItem('wordle-game');
+      const savedGame = localStorage.getItem('wordle-game');
 
-    if (savedGame) {
-      const gameState: SavedGame = JSON.parse(savedGame);
+      if (savedGame) {
+        const gameState: SavedGame = JSON.parse(savedGame);
 
-      if (gameState.puzzleNumber === info.puzzleNumber) {
-        this.loadGame();
-      } else {
-        localStorage.removeItem('wordle-game');
+        if (gameState.puzzleNumber === info.puzzleNumber) {
+          this.loadGame();
+        } else {
+          this.resetGame();
+        }
       }
-    }
-
-    this.saveGame();
-
-    this.cdr.detectChanges();
-  });
-}
+      this.cdr.detectChanges();
+    });
+  }
 
   newGame() {
     location.reload();
